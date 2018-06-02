@@ -1,6 +1,7 @@
 - $title = get_the_title()
+- $template_dir = get_template_directory_uri()
 %main.page-view.advisors.split-screen(role="main")
-  .content-wrapper
+  #app.content-wrapper
     .left-content
       .icon
         - $filename = 'icons/icon_advisor_search'
@@ -15,9 +16,9 @@
           - $heading = $title
         - echo $heading
       .button-group
-        %button.filter.left.selected(type="button")
+        %button.filter.left(type="button" v-on:click="toggleView" v-bind:class="{ selected : isMapView }")
           Map View
-        %button.filter.right(type="button")
+        %button.filter.right(type="button" v-on:click="toggleView" v-bind:class="{ selected : !isMapView }")
           List View
       .ui.accordion
         - $provinces = get_provinces()
@@ -30,17 +31,26 @@
               %span.lnr.lnr-chevron-down
             .menu
               .items
-                .item
-                  %input(type="radio")
-                    %label All
+                .item(data-value="")
+                  %span.radio
+                  %span.label
+                    All Provinces
                 - foreach($provinces as $province)
-                  .item
-                    %input(type="radio" name="province" value=$province[0])
-                      %label
-                        - echo $province[1]
+                  .item(data-value=$province[0])
+                    %span.radio
+                    %span.label
+                      - echo $province[1]
 
     .right-content
-      #map-view
-        map view
-      #list-view
-        list of people
+      - $map_icon = $template_dir . "/images/ui/map_marker.png"
+      - $map_icon_current = $template_dir . "/images/ui/map_marker_current.png"
+      - $medal_icon = $template_dir . "/images/ui/map_popup_medal.png"
+      #map-view(v-if="isMapView" data-map-icon="#{$map_icon}" data-map-icon-current="#{$map_icon_current}" data-medal-icon="#{$medal_icon}")
+        %map-container(v-bind:posts="posts")
+      #list-view(v-else)
+        %ul
+          %li(v-for="post in posts")
+            %h3
+              {{ post.name }}
+            .address
+              {{ post.location.address }}
