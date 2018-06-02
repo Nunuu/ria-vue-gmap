@@ -1,0 +1,182 @@
+// Font
+=font-face($font-family, $file, $weight: normal, $style: normal)
+  @font-face
+    font-family: $font-family
+    src: url('../fonts/' + $file + '/' + $file + '.eot')
+    src: url('../fonts/' + $file + '/' + $file + '.eot?#iefix') format('embedded-opentype'), url('../fonts/' + $file + '/' + $file + '.woff2') format('woff2'), url('../fonts/' + $file + '/' + $file + '.woff') format('woff'), url('../fonts/' + $file + '/' + $file + '.ttf')  format('truetype'), url('../fonts/' + $file + '/' + $file + '.svg#' + $file) format('svg')
+    font-weight: $weight
+    font-style: $style
+
+
+// Breakpoints
+=narrow
+  @media all and (max-height: 768px)
+    @content
+
+=wide
+  @media all and (max-width: 1440px)
+    @content
+
+=laptopwide
+  @media all and (max-width: 1200px)
+    @content
+
+=laptop
+  @media all and (max-width: 1024px)
+    @content
+
+=mobile
+  @media all and (max-width: 768px)
+    @content
+
+=small
+  @media all and (max-width: 568px)
+    @content
+
+=xsmall
+  @media all and (max-width: 320px)
+    @content
+
+=print
+  @media print
+    @content
+
+
+// Browser Specific
+=edge
+	@supports (-ms-ime-align:auto)
+		@content
+
+=ie
+	@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none)
+		@content
+
+=firefox
+	@-moz-document url-prefix()
+		@content
+
+=safari
+  _::-webkit-full-page-media, _:future, :root
+    @content
+
+
+// Alignment
+=vcenter
+  display: flex
+  align-items: center
+
+=hcenter
+  display: flex
+  justify-content: center
+
+=hvcenter
+  display: flex
+  align-items: center
+  justify-content: center
+
+
+// Fixed elements no redraw fix
+=fixed
+  position: fixed
+  backface-visibility: hidden
+
+
+// Image Fill
+=background
+  background-size: cover
+  background-position: center center
+  background-repeat: no-repeat
+
+=full
+  position: absolute
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  width: 100%
+  height: 100%
+
+
+// Clearfix, for containers with floated children
+=clearfix
+  *zoom: 1
+  &:before, &:after
+    content: " "
+    display: table
+  &:after
+    clear: both
+
+
+// Visually Hidden, for accessibility
+=visuallyhidden
+  margin: -1px
+  padding: 0
+  width: 1px
+  height: 1px
+  overflow: hidden
+  clip: rect(0 0 0 0)
+  clip: rect(0, 0, 0, 0)
+  position: absolute
+
+=reversevisuallyhidden
+  margin: 0
+  padding: 0
+  width: auto
+  height: auto
+  overflow: visible
+  clip: none
+  position: relative
+
+
+// Flickering fix
+=noflicker
+  backface-visibility: hidden
+  transform: translateZ(0)
+  transform-style: preserve-3d
+
+
+// SVG clickable
+=svglinkfix
+  a
+    display: inline-block
+    position: relative
+    cursor: pointer
+    &:after
+      content: ''
+      position: absolute
+      top: 0
+      right: 0
+      bottom: 0
+      left: 0  
+
+
+// Fit image
+=fitimage
+  width: auto
+  height: auto
+  max-width: 100%
+  max-height: 100%
+  transform: translate(-50%, -50%)
+  position: absolute
+  top: 50%
+  left: 50%
+
+
+// Placeholder mixin
+=placeholder
+  &::placeholder
+    @content
+  &::-webkit-input-placeholder
+    @content
+  &:-moz-placeholder
+    @content
+  &::-moz-placeholder
+    @content
+  &:-ms-input-placeholder
+    @content
+
+
+// Gradients
+=defaultGradient
+  background: $cyan
+  background: radial-gradient(ellipse at bottom, $cyan 0%, $brandColor 100%)

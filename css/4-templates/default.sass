@@ -1,0 +1,148 @@
+main.default
+  background: white
+  width: 100%
+  section
+    text-align: center
+    +hvcenter
+    min-height: 100vh
+    padding: 0 10%
+    max-width: none
+    background: none
+    .section-content
+      padding-bottom: 7vh
+      max-width: 1200px
+    .page_icon
+      position: absolute
+      top: -5em
+      left: 0
+      right: 0
+      object
+        width: 20em
+    a.back
+      position: absolute
+      color: white
+      margin: 0.3em 0 0 -1em
+      span
+        font-size: 3/6.4+0em
+        display: block
+        transition: transform 0.3s ease-out
+      &:hover
+        span
+          transform: translateX(-5px)
+    h1
+      color: $brandColor
+      margin-bottom: 1em
+      position: relative
+      &:after
+        +underLine
+        bottom: -0.5em
+        background: $brandColor
+        width: 2em
+    .section-text
+      max-width: 900px
+      margin: 0 auto
+    ul.section-menu
+      display: flex
+      margin-top: 7vh
+      li
+        flex-basis: calc(33.33% - 3em)
+        box-shadow: $defaultBoxShadow
+        margin-right: 4em
+        border-radius: $standardLinkBorderRadius
+        position: relative
+        background: white
+        overflow: hidden
+        backface-visibility: hidden
+        &:before
+          content: ''
+          +full
+          +defaultGradient
+          opacity: 0
+          transition: opacity 0.3s ease-out
+        a
+          display: block
+          padding: 4em 3em
+          min-height: 13em
+          position: relative
+          z-index: 1
+          text-align: left
+          +standardLink
+          &:before
+            height: 5%
+            background: rgba($textColor, 0.2)
+          &:after
+            height: 95%
+            opacity: 0
+          *
+            position: relative
+            z-index: 1
+          .link-bg
+            +full
+            object
+              position: absolute
+              bottom: 1.5em
+              right: 2em
+              width: 50%
+              pointer-events: none
+            &.full
+              object
+                width: 100%
+                bottom: 0
+                right: 0
+          .link-title
+            font-size: 2.2em
+            +bodyFontBold
+            color: $brandColor
+          .link-info
+            font-size: 1.6em
+            color: $textColor
+            margin-top: 1.5em
+            line-height: 1.75
+          span
+            position: absolute
+            right: 3em
+            bottom: 2em
+            color: white
+            visibility: hidden
+            opacity: 0
+            transform: translateX(-10px)
+            transition: opacity 0.3s ease-out, visibility 0.3s ease-out, transform 0.3s ease-out
+            &:before
+              font-size: 2.7em
+        &:hover
+          &:before
+            opacity: 1
+          a
+            .link-title
+              color: white
+            .link-info
+              color: white
+            span
+              opacity: 1
+              visibility: visible
+              transform: none
+  .search-form
+    position: absolute
+    z-index: 1
+    bottom: $mainPadding
+    left: 0
+    right: 0
+    margin: 0 auto
+    button
+      color: $textColor
+  &.dark
+    +defaultGradient
+    section
+      h1
+        color: white
+        &:after
+          background: $fadedWhite
+    .search-form
+      &:after
+        background: $fadedWhite
+      input
+        color: white
+        +placeholder
+          color: white
+      button
+        color: white

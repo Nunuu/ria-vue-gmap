@@ -1,0 +1,46 @@
+- $title = get_the_title()
+%main.page-view.advisors.split-screen(role="main")
+  .content-wrapper
+    .left-content
+      .icon
+        - $filename = 'icons/icon_advisor_search'
+        - include(locate_template('modules/php/svg-image.php'))
+      %button.back(type="button")
+        %span.lnr.lnr-arrow-left
+      .breadcrumb
+        - echo 'RI Marketplace / ' . $title
+      %h1
+        - $heading = get_field('heading')
+        - if (empty($heading))
+          - $heading = $title
+        - echo $heading
+      .button-group
+        %button.filter.left.selected(type="button")
+          Map View
+        %button.filter.right(type="button")
+          List View
+      .ui.accordion
+        - $provinces = get_provinces()
+        .title.active
+          filters
+        .content.active
+          .ui.floating.dropdown.button.pointing.top
+            %button.text.filter(type="button")
+              Province
+              %span.lnr.lnr-chevron-down
+            .menu
+              .items
+                .item
+                  %input(type="radio")
+                    %label All
+                - foreach($provinces as $province)
+                  .item
+                    %input(type="radio" name="province" value=$province[0])
+                      %label
+                        - echo $province[1]
+
+    .right-content
+      #map-view
+        map view
+      #list-view
+        list of people

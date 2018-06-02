@@ -1,0 +1,29 @@
+#pixelcarve
+  +svglinkfix
+  a
+    position: relative
+    z-index: 1
+    object, img
+      width: 2.5em
+      height: auto
+      opacity: 0.5
+      transition: opacity 0.5s ease-out
+    &:hover
+      color: white
+      object, img
+        opacity: 1
+  .pcarve_caption
+    height: 1.3em
+    overflow: hidden
+    margin-left: 30px
+    margin-bottom: -20px
+    font-size: 0.8em
+    color: white
+    .pcarve_label
+      transform: translateX(-100%)
+      padding-right: .5em
+      position: relative
+      transition: transform 0.3s ease-out
+    &.shown
+      .pcarve_label
+        transform: translateX(0)

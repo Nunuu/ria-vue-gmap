@@ -1,0 +1,143 @@
+// Body Font Weights
+=bodyFontLight
+  font-weight: 300
+
+=bodyFontRegular
+  font-weight: 400
+  
+=bodyFontMedium
+  font-weight: 500
+
+=bodyFontBold
+  font-weight: 700
+
+=bodyFontXBold
+  font-weight: 800
+
+// Lines
+=beforeLine
+  content: ''
+  position: absolute
+  height: 1px
+  background: $brandColor
+  top: 0.5em
+  left: -2em
+  margin-left: -15%
+  width: 15%
+
+=topLine
+  content: ''
+  position: absolute
+  top: 0
+  left: 0
+  height: 2px
+  width: 2em
+  background: $highlightColor
+  transition: transform 0.3s ease-out
+  transform-origin: 0% 0%
+
+=underLine
+  content: ''
+  position: absolute
+  left: 0
+  right: 0
+  bottom: -1em
+  width: 5em
+  height: 1px
+  background: $highlightColor
+  margin: 0 auto
+
+// Forms
+=newsletterForm
+  position: relative
+  max-width: $formMaxWidth
+  border-bottom: 1px solid $brandColor
+  input
+    font-size: 1.6em
+    width: calc(100% - 10em)
+    padding: 1.5em 0
+  button
+    color: $brandColor
+    +bodyFontBold
+    position: absolute
+    top: 1.2em
+    right: 0
+    span
+      display: inline-block
+      transition: transform 0.3s ease-out
+    .label
+      font-size: 1.6em
+      letter-spacing: 1px
+      text-transform: uppercase
+    .lnr
+      font-size: 2.6em
+      position: relative
+      top: 0.2em
+      transition-delay: 0.05s
+      margin-left: 0.25em
+    &:hover
+      span
+        transform: translateX(10px)
+
+=signupForm
+  p
+    margin: 0
+    text-align: center
+    font-size: 1.6em
+    max-width: $formMaxWidth
+  form
+    +newsletterForm
+
+// Navigation
+=headerNav
+  ul
+    display: inline-block
+    li
+      font-size: 1.6em
+      display: inline-block
+      margin-left: 1em
+      +bodyFontBold
+      position: relative
+      a
+        color: white
+        display: block
+        padding-top: 0.65em
+        &:before
+          +topLine
+      &:first-child
+        margin-left: 0
+      &:hover
+        a:before
+          transform: scaleX(1.5)
+      &.selected
+        pointer-events: none
+        opacity: 0.7
+
+// Button
+=standardLink
+  border-radius: $standardLinkBorderRadius
+  box-shadow: $defaultBoxShadow
+  &:before, &:after
+    content: ''
+    position: absolute
+    left: 0
+    width: 100%
+    transition: background 0.3s ease-out
+  &:before
+    background: $darkBrandColor
+    top: 0
+    height: 10%
+    border-top-left-radius: $standardLinkBorderRadius
+    border-top-right-radius: $standardLinkBorderRadius
+  &:after
+    background: white
+    height: 90%
+    bottom: 0
+    border-bottom-left-radius: $standardLinkBorderRadius
+    border-bottom-right-radius: $standardLinkBorderRadius
+  &:hover
+    color: white
+    &:before
+      background: $highlightColor
+    &:after
+      background: $brandColor

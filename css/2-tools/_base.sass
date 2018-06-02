@@ -1,0 +1,131 @@
+body
+  background: $brandColor
+  font-family: $bodyFont
+  color: $textColor
+
+a
+  text-decoration: none
+  transition: color 0.3s ease-out
+  color: blue
+  &:hover
+    color: purple
+
+// For Screw Page Reload plugin
+#views-container
+	min-height: 100vh
+
+.page-view
+  display: none
+  visibility: hidden
+  opacity: 0
+
+ul
+  list-style-type: none
+  padding: 0
+  margin: 0
+
+h1, h2, h3, h4, h5, h6, p
+  position: relative
+  margin-top: 0
+
+h1
+  font-size: 6.4em
+  +bodyFontXBold
+  
+h2
+  font-size: 3.4em
+  color: $brandColor
+  +bodyFontBold
+
+h3
+  font-size: 2.5em
+  color: $brandColor
+  +bodyFontRegular
+
+*
+  outline-color: $highlightColor
+
+.uppercase
+  text-transform: uppercase
+
+.breadcrumb
+  font-size: 2em
+  +bodyFontLight
+
+.logo
+  +svglinkfix
+
+.cta
+  background: $brandColor
+  color: white
+  position: relative
+  padding: 9em 10% 7em
+  overflow: hidden
+  .bg
+    position: absolute
+    left: 0
+    height: 100%
+    width: 100%
+    bottom: 0
+    pointer-events: none
+    object
+      position: absolute
+      left: 0
+      bottom: 0
+      width: 100%
+      height: auto
+  .cta-content
+    +vcenter
+    justify-content: space-between
+    h3
+      top: 0.5em
+      font-size: 2.7em
+      display: inline-block
+      position: relative
+      padding: 1em 0 0
+      color: white
+      &:before
+        content: ''
+        position: absolute
+        left: 0
+        top: 0
+        width: 3em
+        height: 1px
+        background: $highlightColor
+
+.social-links
+  ul
+    +vcenter
+    display: inline-block
+    li
+      display: inline-block
+      margin-right: 3em
+      a
+        color: $brandColor
+        &:hover
+          color: $darkBrandColor
+      &:last-child
+        margin-right: 0
+
+.search-form
+  position: relative
+  text-align: left
+  max-width: $formMaxWidth
+  input
+    font-size: 1.8em
+    +bodyFontLight
+    padding: 1em 0
+    width: calc(100% - 1.5em)
+  &:after
+    content: ''
+    position: absolute
+    width: 100%
+    height: 1px
+    background: $textColor
+    left: 0
+    bottom: 0
+  button
+    position: absolute
+    top: 0
+    margin-right: 0
+    padding: 1.8em 0

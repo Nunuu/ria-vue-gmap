@@ -1,0 +1,23 @@
+.backgrounds
+  pointer-events: none
+  +full
+  .background
+    width: 100%
+    height: 100%
+    +background
+    display: none
+  @media all and (max-width: 500px)
+    .size-large, .size-medium
+      background: none !important
+    .size-small
+      display: block
+  @media all and (max-width: 1000px) and (min-width: 501px)
+    .size-large, .size-small
+      background: none !important
+    .size-medium
+      display: block
+  @media all and (min-width: 1001px)
+    .size-small, .size-medium
+      background: none !important
+    .size-large
+      display: block

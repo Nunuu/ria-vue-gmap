@@ -1,0 +1,37 @@
+main.single-member
+  overflow: hidden
+  .content-wrapper
+    height: 100vh
+  .left-content
+    padding: 0
+  .right-content
+    padding-left: 5%
+    padding-right: 5%
+    overflow: hidden
+    overflow-y: scroll
+    .wrapper
+      max-width: 1000px
+  h1
+    color: $brandColor
+    font-size: 5em
+    margin: 1em 0 0
+    padding: 0
+  h2
+    font-size: 2.5em
+    color: $textColor
+    +bodyFontRegular
+    margin: 1.5em 0 3em
+    position: relative
+    display: table
+    &:after
+      +underLine
+      background: rgba($brandColor, 0.3)
+      right: auto
+      bottom: auto
+      top: 2.5em
+  .body-text
+    font-size: 1.9em
+    line-height: 1.75
+    margin-bottom: 5vh
+  ul.contact
+    margin-bottom: 5vh

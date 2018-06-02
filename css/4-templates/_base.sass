@@ -1,0 +1,301 @@
+section
+  background: white
+  position: relative
+  z-index: 1
+  padding: 10em 10%
+  overflow: hidden
+  .section-text
+    font-size: 2.6em
+    line-height: 1.75
+  .section-content
+    position: relative
+    z-index: 1
+    max-width: 900px
+  &.hero
+    height: 80vh
+    color: white
+    z-index: 0
+    +hvcenter
+    padding-top: 0
+    padding-bottom: 0
+    flex-flow: row wrap
+    .bg-filter
+      +full
+      background: $brandColor
+      background: radial-gradient(ellipse at center, #4babff 0%, $brandColor 100%)
+    .backgrounds, video
+      opacity: 0.2
+    video
+      position: absolute
+      top: 0
+      left: 0
+      width: 100%
+      height: auto
+    .section-content
+      max-width: 1200px
+      text-align: center
+      padding-bottom: 5vh
+    h1
+      margin-bottom: 0.5em
+    h2
+      font-size: 3.2em
+      color: white
+    .hero-links
+      margin-top: 8vh
+      a:first-child
+        margin-right: 3em
+    .bg-wave
+      position: absolute
+      height: 20%
+      pointer-events: none
+      width: 100%
+      bottom: 15%
+      left: 0
+    .scrolldown
+      position: absolute
+      bottom: 10%
+      transition: transform 0.3s ease-out
+      &:hover
+        transform: translateY(5px)
+  &.standard
+    text-align: center
+    .section-content
+      margin: 0 auto
+      max-width: 680px
+    h2
+      margin: 0 0 2.25em
+      position: relative
+      line-height: 1.5
+      &:after
+        +underLine
+        bottom: -0.5em
+        width: 3em
+    .section-text
+      font-size: 2em
+      text-align: left
+    .members
+      display: flex
+      flex-flow: row wrap
+      margin: 0 auto
+      .member
+        text-align: left
+        position: relative
+        .name
+          font-size: 2.4em
+          +bodyFontBold
+          line-height: 1.5
+          color: $brandColor
+          margin: 1em 0 0 0
+          &:hover
+            color: $darkBrandColor
+        .position
+          font-size: 1.9em
+          margin: 1em 0 1.25em
+          line-height: 1.5
+        .location
+          +vcenter
+          .lnr
+            font-size: 2.4em
+            color: $brandColor
+            margin-right: 0.5em
+          .info
+            font-size: 1.5em
+            line-height: 1.5
+            strong
+              +bodyFontBold
+              display: block
+              margin-bottom: 0.25em
+  &.overview
+    padding-top: 5em
+  &.team
+    .members
+      max-width: 1000px
+      .member
+        flex-basis: calc(33.33% - 3em)
+        margin: 0 3em 3em 0
+        .photo
+          display: block
+          width: 100%
+          height: 15vw
+          position: relative
+          .image
+            +full
+            +background
+          .hover
+            +full
+            background: rgba($brandColor, 0.9)
+            +hvcenter
+            opacity: 0
+            transition: opacity 0.3s ease-out
+            &:before
+              content: ''
+              position: absolute
+              top: 0
+              left: 0
+              width: 100%
+              height: 4px
+              background: $highlightColor
+            .label
+              color: white
+              font-size: 1.6em
+              text-transform: uppercase
+              +bodyFontBold
+              opacity: 0
+              transition: opacity 0.3s ease-out
+              span.lnr
+                font-size: 2.6/1.6+0em
+                position: relative
+                top: 0.25em
+                display: inline-block
+                transition: transform 0.3s ease-out
+          &:hover
+            .hover 
+              opacity: 1
+              .label
+                opacity: 1
+                span.lnr
+                  transform: translateX(10px)
+  &.board
+    background: $lightGray
+    .members
+      max-width: 1300px
+      .member
+        flex-basis: calc(25% - 5em)
+        margin: 0 5em 5em 0
+  &.checklist
+    padding-top: 0
+    h3
+      line-height: 1.5
+    ul
+      li
+        margin-bottom: 2em
+        &:before
+          position: absolute
+          left: -2em
+          content: '\e934'
+          font-family: $iconFont
+          color: $highlightColor
+  &.magazine
+    padding: 8vh 0 0
+    h2
+      text-align: center
+    .articles
+      background: $brandColor
+      color: white
+      a
+        color: white
+      .tag
+        font-size: 1.4em
+        color: $brandColor
+        background: white
+        border-radius: 2em
+        padding: 1em 1.5em
+        display: inline-block
+        font-style: italic
+      .title
+        font-size: 2.5em
+        +bodyFontBold
+      .info
+        font-size: 1.2em
+        +bodyFontMedium
+        color: $fadedWhite
+      &.single
+        .title
+          font-size: 3.1em
+  &.news
+    background: $lightGray
+    h2
+      text-align: center
+    &.dark
+      background: $brandColor
+      h2
+        color: white
+  &.newsletter
+    background: #e5ecf3
+    color: $brandColor
+    &:after
+      content: ''
+      background: $brandColor
+      opacity: 0.1
+      width: 100%
+      height: 100%
+      position: absolute
+      top: 0
+      left: 0
+    .bg
+      position: absolute
+      left: 0
+      bottom: 0
+      width: 100%
+      height: 100%
+    .section-content
+      +vcenter
+      max-width: none
+      width: 100%
+      justify-content: space-between
+    .left
+      flex-basis: 50%
+      h2, .cta_body
+        max-width: $formMaxWidth
+      .cta_body
+        font-size: 2em
+        line-height: 2
+    form
+      +newsletterForm
+      flex-basis: 45%
+      margin-left: 5%
+  &.certified
+    text-align: center
+    .section-content
+      display: flex
+      justify-content: space-between
+      width: 100%
+      max-width: none
+    h2
+      margin-bottom: 8vh
+    .graphic
+      flex-basis: 45%
+      padding-right: 5%
+      object
+        max-width: 35em
+    .right
+      flex-basis: 50%
+      text-align: left
+      h3
+        &:first-of-type:before
+          +beforeLine
+          left: -1em
+        &:last-of-type
+          margin-top: 2em
+      .section-text
+        font-size: 2em
+        line-height: 2
+        max-width: 600px
+      ul
+        margin: 0
+        li
+          margin-bottom: 0.5em
+          position: relative
+          &:last-child
+            margin-bottom: 0
+          &:before
+            content: '\e934'
+            font-family: $iconFont
+            position: absolute
+            color: $highlightColor
+            left: -2em
+    a
+      display: inline-block
+      margin: 8vh auto 0
+  &.logo-showcase
+    background: $lightGray
+    text-align: center
+    padding: 10vh 10%
+    h2
+      margin-bottom: 8vh
+    ul
+      +hvcenter
+      li
+        margin-right: 10em
+        img
+          max-height: 80px

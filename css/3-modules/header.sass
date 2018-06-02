@@ -1,0 +1,282 @@
+header.main
+  +fixed
+  padding: $headerYPadding $headerXPadding
+  display: block
+  width: $headerWidth
+  top: 0
+  left: 0
+  +vcenter
+  text-align: center
+  z-index: 1005
+  transition: background 0.3s ease-out, padding 0.3s ease-out
+  .logo, nav.header
+    transition: opacity 0.3s ease-out, visibility 0.3s ease-out
+    &.hidden
+      visibility: hidden
+      opacity: 0
+  .logo
+    position: relative
+    z-index: 1
+    object
+      width: 7.5em
+      height: auto
+    &.dark
+      display: none
+  nav.header
+    margin-left: $headerXPadding
+    position: relative
+    z-index: 1
+    +headerNav
+  .page-title, .menu-title
+    position: absolute
+    font-size: 2em
+    left: 0
+    right: 0
+    color: white
+    &.hidden
+      visibility: hidden
+  .right
+    position: absolute
+    right: $headerXPadding
+    button.white
+      position: relative
+      top: -1em
+      margin-right: 3em
+    .search-form
+      display: inline-block
+      top: -1em
+      margin-right: 3em
+      width: calc(40vw - 10em)
+      transition: opacity 0.3s ease-out, visibility 0.3s ease-out
+      input
+        width: calc(100% - 2em)
+        visibility: hidden
+        opacity: 0
+        transition: opacity 0.3s ease-out, visibility 0.3s ease-out
+      &:after
+        transform: scaleX(0)
+        transform-origin: 100% 0%
+        transition: transform 0.3s ease-out
+      button
+        top: 0
+        margin-right: 0
+        padding: 0 0 1em 0
+      &.shown
+        input
+          visibility: visible
+          opacity: 1
+        &:after
+          transform: none
+    .site-nav
+      position: relative
+      display: inline-block
+      top: 1em
+      .menu-trigger
+        position: relative
+        z-index: 1
+        color: white
+        padding: 1em 0
+        text-transform: uppercase
+        letter-spacing: 1px
+        +bodyFontBold
+        font-size: 1.1em
+        &:before, &:after
+          content: ''
+          position: absolute
+          left: -10%
+          height: 2px
+          width: 120%
+          background: $highlightColor
+          transition: background 0.3s ease-out
+        &:before
+          top: 0
+        &:after
+          bottom: 0
+        span
+          transition: opacity 0.3s ease-out
+        span.lnr
+          color: white
+          position: absolute
+          top: 0.35em
+          font-size: 1.8em
+          text-align: center
+          left: 0.4em
+          opacity: 0
+          font-weight: bold
+      .language
+        button
+          color: $fadedWhite
+          font-size: 1.4em
+          padding: 0.5em 0.4em
+          position: relative
+          transition: color 0.3s ease-out
+          &.disabled
+            color: white
+            pointer-events: none
+          &:first-child:after
+            content: ''
+            position: absolute
+            top: 0.7em
+            right: -0.1em
+            background: $fadedWhite
+            width: 1px
+            height: calc(100% - 1.4em)
+          &:hover
+            color: white
+    &.dark
+      button.white
+        color: $brandColor
+      .site-nav
+        .menu-trigger
+          color: $brandColor
+        .language
+          button
+            color: rgba($brandColor, 0.5)
+            &.disabled
+              color: $darkBrandColor
+            &:first-child:after
+              background: rgba($brandColor, 0.5)
+            &:hover
+              color: $darkBrandColor
+  &.dark
+    .logo
+      &.white
+        display: none
+      &.dark
+        display: block
+    .page-title
+      color: $brandColor
+    nav.header
+      ul
+        li
+          a
+            color: $brandColor
+  &.solid
+    padding: 2vh $headerXPadding
+    background: $brandColor
+  &.open
+    &.solid
+      background: none
+    .right
+      .site-nav
+        .menu-trigger
+          &:before, &:after
+            background: $fadedWhite
+          span
+            opacity: 0
+            &.lnr
+              opacity: 1
+      .search-form
+        opacity: 0
+        visibility: hidden
+    
+nav.main
+  +fixed
+  visibility: hidden
+  width: 100%
+  height: 100%
+  z-index: 1004
+  +defaultGradient
+  padding: 13em 0 5em
+  text-align: center
+  .nav-bg
+    pointer-events: none
+    +full
+    .menu-image
+      position: absolute
+      bottom: 0
+      right: 55%
+      +background
+      width: 30%
+      height: 70%
+      background-size: contain
+      background-position: 50% 100%
+  ul
+    li
+      &.current_page_item
+        pointer-events: none
+  .nav-content
+    width: 80%
+    display: flex
+    justify-content: space-between
+    max-width: 1200px
+    margin: 0 auto
+    text-align: left
+    .left
+      flex-basis: calc(50% - 8em)
+      padding-right: 8em
+      .logo
+        position: relative
+        z-index: 1
+        width: 100%
+        object
+          width: 100%
+          height: auto
+      +headerNav
+      ul
+        margin-top: 7vh
+        display: flex
+        justify-content: space-between
+        width: 95%
+        li
+          font-size: 2.3em
+    .right
+      flex-basis: calc(50% - 8em)
+      padding-left: 8em
+      .search-form
+        margin-bottom: 7vh
+        input
+          color: white
+          +placeholder
+            color: white
+        &:after
+          background: $fadedWhite
+      ul.menu
+        li
+          font-size: 2.8em
+          margin-bottom: 1em
+          display: table
+          a
+            color: white
+          &:hover
+            a
+              color: $highlightColor
+          &.current_page_item
+            +bodyFontBold
+            a
+              color: $highlightColor
+      .signup-form
+        +signupForm
+        margin-top: 7vh
+        text-align: left
+        p
+          text-align: left
+          color: $fadedWhite
+        form
+          border-color: $fadedWhite
+          input
+            color: white
+            +placeholder
+              color: white
+          button
+            color: white
+      .bottom-wrapper
+        margin-top: 5vh
+        +vcenter
+        justify-content: space-between
+        .social-links
+          ul
+            li
+              margin-right: 5em
+              a
+                color: white
+                &:hover
+                  color: $highlightColor
+              i
+                font-size: 2.5em
+        .copyright
+          color: $fadedWhite
+          line-height: 1.5
+          font-size: 1.4em
+  &.shown
+    visibility: visible

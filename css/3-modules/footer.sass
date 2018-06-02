@@ -1,0 +1,120 @@
+footer.main
+  .footer-cta
+    padding: 15em $xPadding 10em
+    .bg-top
+      background: white
+      position: absolute
+      width: 100%
+      height: 7em
+      top: 0
+      left: 0
+      pointer-events: none
+      z-index: 1
+      object
+        width: 100%
+        height: auto
+    .bg
+      background: $brandColor
+    h3
+      color: white
+      font-size: 4em
+    a
+      top: 0.5em
+  .sustaining-members
+    background: white
+    text-align: center
+    padding: 5em 0
+    position: relative
+    &:before
+      position: absolute
+      content: ''
+      top: -20px
+      border-left: 20px solid transparent
+      border-right: 20px solid transparent
+      border-bottom: 20px solid white
+      margin-left: -14px
+    button.scrollup
+      position: absolute
+      top: -0.5em
+      font-size: 1.8em
+      color: $brandColor
+      cursor: pointer
+      z-index: 2
+      transition: transform 0.3s ease-out
+      backface-visibility: hidden
+      margin-left: -0.5em
+      &:hover
+        transform: translateY(-2px)
+    h3
+      font-size: 2.1em
+      color: $textColor
+      margin-bottom: 5vh
+    ul
+      +hvcenter
+      flex-flow: row wrap
+      max-width: 80%
+      margin: 0 auto
+      li
+        flex-basis: 20%
+        margin: 0 0 3em 0
+  .footer-contact
+    background: $lightGray
+    padding: 10vh $xPadding 5vh
+    .footer-contact-wrapper
+      display: flex
+      .left
+        flex-basis: 50%
+      .right
+        flex-basis: 45%
+        margin-left: 5%
+    .logo
+      margin-bottom: 5vh
+      object
+        height: 5em
+        width: auto
+    ul.contact
+      li
+        margin-bottom: 1.5em
+    .social-bar
+      background: rgba($brandColor, 0.1)
+      max-width: calc(520px - 4em)
+      padding: 1em 2em
+      border-radius: 4em
+      font-size: 1.6em
+      +vcenter
+      justify-content: space-between
+      .label, .social-links
+        display: inline-block
+      .label
+        margin-right: 2em
+    .signup-form
+      margin-top: 5vh
+      +signupForm
+    .copyright
+      color: rgba($textColor, 0.6)
+      text-align: center
+      font-size: 1.4em
+      margin-top: 5vh
+      line-height: 1.5
+    +mobile
+      padding: 7vh $mobileXPadding 4vh
+  nav.footer
+    padding: 2em $headerXPadding
+    ul
+      display: flex
+      justify-content: space-between
+      li
+        margin-right: 1em
+        font-size: 1.6em
+        a
+          color: white
+          transition: color 0.3s ease-out
+        &:hover
+          a
+            color: rgba(white, 0.5)
+        &.current_page_item
+          a
+            color: rgba(white, 0.5)
+            pointer-events: none
+    +mobile
+      display: none
