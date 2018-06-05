@@ -9,11 +9,12 @@ class MapPopup {
         'post', 
         'medalIcon',
         'map',
-        'selectedMarker'
+        'selectedMarker',
+        'toShowInfo'
       ],
       data() {
         return {
-          infoBox: null
+          infoBox: null,
         }
       },
       template: `
@@ -21,7 +22,7 @@ class MapPopup {
           <div class="photo">
             <img :src="post.photo" />
             <div class="info">
-              <h4>{{post.name}}</h4>
+              <h4>{{getName}}</h4>
               <h5 class="position">{{post.position}}</h5>
               <h5>{{post.company}}</h5>
             </div>
@@ -39,7 +40,7 @@ class MapPopup {
           </div>
           <div class="contact">
             <div class="left">
-              <a :href="getPhone">
+              <a :href="getPhone" v-if="post.contact.phone">
                 <span class="lnr lnr-telephone"></span>
                 <span class="label">Phone</span>
               </a>
@@ -47,8 +48,8 @@ class MapPopup {
                 <span class="lnr lnr-envelope"></span>
                 <span class="label">Email</span>
               </a>
-              <a :href="post.website" target="_blank">
-                <span class="lnr lnr-desktop"></span>
+              <a :href="post.website" v-if="post.website" target="_blank">
+                <span class="lnr lnr-network"></span>
                 <span class="label">Website</span>
               </a>
               <a :href="getDirectionUrl" target="_blank">
@@ -67,6 +68,13 @@ class MapPopup {
         </div>
       `,
       computed: {
+        getName() {
+          if (this.post.nominals) {
+            return `${this.post.name}, ${this.post.nominals}`;
+          } else {
+            return this.post.name;
+          }
+        },
         getPhone() {
           return `tel:${this.post.contact.phone}`;
         },
@@ -94,7 +102,15 @@ class MapPopup {
             map: this.map
           });
         }
-      }
-    })
+        this.map.panTo(pos);
+      },
+      watch: {
+        toShowInfo(val) {
+          if (val) {
+            this.infoBox.update(this.selectedMarker.getPosition(), this.$el);
+          }
+        }
+      },
+    });
   }
 }

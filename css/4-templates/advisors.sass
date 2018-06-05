@@ -12,6 +12,45 @@ main.advisors
       background: linear-gradient(to bottom, rgba(white,1) 50%, rgba(white,0) 100%)
       z-index: 1
       pointer-events: none
+  #no-results
+    position: absolute
+    background: white
+    width: 90%
+    height: calc(100% - 15em)
+    padding: 10em 5% 0
+    color: $brandColor
+    font-size: 2em
+    text-align: center
+    z-index: 2
+  #list-search
+    position: absolute
+    top: 2.9vh
+    right: calc(2vw + 18em)
+    z-index: 1006
+    .search-form
+      width: calc(40vw - 10em)
+      max-width: 800px
+      input
+        border: none
+        background: none
+      button
+        color: $brandColor
+    ul.current-filters
+      margin-top: 3em
+      li
+        display: inline-block
+        background: $brandColor
+        border-radius: 2em
+        padding: 1em 2em
+        +bodyFontLight
+        font-size: 1.3em
+        color: white
+        cursor: pointer
+        transition: background 0.3s ease-out
+        span.lnr
+          margin-left: 0.5em
+        &:hover
+          background: $darkBrandColor
   #map-view
     position: relative
     width: 100%
@@ -119,11 +158,9 @@ main.advisors
         .left
           display: flex
           align-items: flex-end
-          flex-basis: 60%
-          justify-content: space-between
         a
           text-align: center
-          margin-right: 1em
+          margin-right: 3em
           span 
             display: block
             transition: text-shadow 0.3s ease-out
@@ -131,8 +168,6 @@ main.advisors
             color: $highlightColor
             font-size: 2.1em
             margin-bottom: 0.5em
-            &.lnr-desktop
-              margin-bottom: 0.4em
           span.label
             color: white
             font-size: 1.1em
@@ -155,5 +190,36 @@ main.advisors
         &:hover
           color: $highlightColor
   #list-view
-    padding: 21vh 5% 0
-    width: 90%
+    padding: 20em 5vw 10em
+    width: calc(100% - 10vw)
+    position: relative
+    overflow: hidden
+    height: calc(100vh - 30em)
+    overflow-y: auto
+    ul
+      text-align: center
+      li
+        padding: 3em
+        border: $defaultBorder
+        margin: 0 auto 1em
+        box-shadow: $defaultBoxShadow
+        border-radius: $standardLinkBorderRadius
+        position: relative
+        +standardCard
+        text-align: left
+        &:before
+          height: 5%
+          background: $brandColor
+        &:after
+          height: 95%
+          opacity: 0
+        h3
+          +bodyFontBold
+        h4
+          font-size: 2em
+          +bodyFontRegular
+        .address
+          font-size: 1.2em
+        &:hover
+          &:before
+            background: $brandColor

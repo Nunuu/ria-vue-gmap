@@ -17,7 +17,7 @@ class MapContainer {
           selectedPost: null,
           selectedMarker: null,
           medalIcon: '',
-          infoWindow: null
+          toShowInfo: true,
         }
       },
       template: `
@@ -35,6 +35,7 @@ class MapContainer {
             :post="selectedPost" 
             :map="map"
             :selectedMarker="selectedMarker"
+            :toShowInfo="toShowInfo"
             :medalIcon="medalIcon"
             @infoClosed="onInfoClosed"></map-popup>
         </div>
@@ -44,7 +45,6 @@ class MapContainer {
         this.mapIcon = this.mapViewDiv.getAttribute('data-map-icon');
         this.mapIconCurrent = this.mapViewDiv.getAttribute('data-map-icon-current');
         this.medalIcon = this.mapViewDiv.getAttribute('data-medal-icon');
-        this.bounds = new google.maps.LatLngBounds();
 
         this.initMap();
 
@@ -54,6 +54,12 @@ class MapContainer {
       },
       watch: {
         posts(newPosts) {
+          if (this.posts) {
+            this.markers.forEach((marker, index) => {
+              marker.setMap(null);
+            });
+            this.markers = [];
+          }
           this.addMarkers();
         }
       },
@@ -82,6 +88,7 @@ class MapContainer {
         },
         addMarkers() {
           // add markers
+          this.bounds = new google.maps.LatLngBounds();
           this.posts.forEach((post) => {
             const position = new google.maps.LatLng(post.location.latitude, post.location.longitude);
             const marker = new google.maps.Marker({
@@ -93,18 +100,21 @@ class MapContainer {
             this.map.fitBounds(this.bounds.extend(position), 50);
           });
 
+          // init marker events
           this.markers.forEach((marker, index) => {
             marker.addListener('click', (e) => {
               marker.setIcon(this.mapIconCurrent);
-              this.markers.map((mappedMarker) => {
-                if (mappedMarker !== marker) {
-                  mappedMarker.setIcon(this.mapIcon);
-                }
-              });
-
-              this.selectedMarker = marker;
-              this.selectedPost = this.posts[index];
-              // console.log(this.selectedPost);
+              if (this.selectedMarker !== marker) {
+                this.markers.map((mappedMarker) => {
+                  if (mappedMarker !== marker) {
+                    mappedMarker.setIcon(this.mapIcon);
+                  }
+                });
+                this.selectedMarker = marker;
+                this.selectedPost = this.posts[index];
+                // console.log(this.selectedPost);
+              }
+              this.toShowInfo = true;
             });
           });
         },
@@ -116,8 +126,9 @@ class MapContainer {
         },
         onInfoClosed() {
           this.selectedMarker.setIcon(this.mapIcon);
+          this.toShowInfo = false;
         }
       }
-    })
+    });
   }
 }

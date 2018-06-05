@@ -49,8 +49,14 @@ h3
   text-transform: uppercase
 
 .breadcrumb
+  position: relative
   font-size: 2em
   +bodyFontLight
+  color: $fadedWhite
+  a
+    color: white
+    &:hover
+      color: $fadedWhite
 
 .logo
   +svglinkfix

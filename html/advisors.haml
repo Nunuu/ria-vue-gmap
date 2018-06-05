@@ -1,15 +1,28 @@
 - $title = get_the_title()
 - $template_dir = get_template_directory_uri()
+
+- $page_id = get_the_ID()
+- $parent_id = wp_get_post_parent_id($page_id)
+- $parent_link = get_the_permalink($parent_id)
+- if ($parent_id)
+  - $parent_parent_id = wp_get_post_parent_id($parent_id)
+
 %main.page-view.advisors.split-screen(role="main")
   #app.content-wrapper
     .left-content
       .icon
         - $filename = 'icons/icon_advisor_search'
         - include(locate_template('modules/php/svg-image.php'))
-      %button.back(type="button")
+      %a.back(href=$parent_link)
         %span.lnr.lnr-arrow-left
       .breadcrumb
-        - echo 'RI Marketplace / ' . $title
+        - if ($parent_parent_id)
+          %a(href=get_the_permalink($parent_parent_id))
+            - echo get_the_title($parent_parent_id)
+          - echo ' / '
+        %a(href=$parent_link)
+          - echo get_the_title($parent_id)
+        - echo ' / '
       %h1
         - $heading = get_field('heading')
         - if (empty($heading))
@@ -28,29 +41,37 @@
           .ui.floating.dropdown.button.pointing.top
             %button.text.filter(type="button")
               Province
-              %span.lnr.lnr-chevron-down
             .menu
-              .items
-                .item(data-value="")
+              .items(data-filter="province")
+                .item(data-value="" v-on:click="filterList")
                   %span.radio
                   %span.label
                     All Provinces
+                  %span.lnr.lnr-chevron-down
                 - foreach($provinces as $province)
-                  .item(data-value=$province[0])
+                  .item(data-value=$province[0] v-on:click="filterList")
                     %span.radio
                     %span.label
                       - echo $province[1]
+                    %span.lnr.lnr-chevron-down
 
     .right-content
+      #no-results(v-if="isNoResults")
+        %no-results
       - $map_icon = $template_dir . "/images/ui/map_marker.png"
       - $map_icon_current = $template_dir . "/images/ui/map_marker_current.png"
       - $medal_icon = $template_dir . "/images/ui/map_popup_medal.png"
-      #map-view(v-if="isMapView" data-map-icon="#{$map_icon}" data-map-icon-current="#{$map_icon_current}" data-medal-icon="#{$medal_icon}")
+      #map-view(v-else-if="isMapView" data-map-icon="#{$map_icon}" data-map-icon-current="#{$map_icon_current}" data-medal-icon="#{$medal_icon}")
         %map-container(v-bind:posts="posts")
       #list-view(v-else)
         %ul
           %li(v-for="post in posts")
             %h3
               {{ post.name }}
+            %h4
+              {{ post.position }}
             .address
               {{ post.location.address }}
+      #list-search
+        %user-search(v-on:term-change="onTermChange")
+        %current-filters(v-bind:filters="filters" v-on:filter-removed="onFilterRemoved")

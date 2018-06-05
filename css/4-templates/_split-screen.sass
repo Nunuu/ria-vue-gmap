@@ -7,6 +7,8 @@ main.split-screen
     flex-basis: 45%
     position: relative
     padding-top: $mainPadding
+    +ie
+      min-height: calc(100vh - 12em)
   .left-content
     +defaultGradient
     color: white
@@ -38,10 +40,11 @@ main.split-screen
     object
       width: 15em
       height: auto
-  button.back
+  a.back
     position: absolute
-    margin: -0.15em 0 0 -1.75em
+    margin: -0.75em 0 0 -4em
     transition: transform 0.3s ease-out
+    color: white
     &:hover
       transform: translateX(-5px)
   h1
@@ -89,10 +92,14 @@ main.split-screen
         top: 0.15em
         display: inline-block
         transition: transform 0.3s ease-out
+      span.label
+        pointer-events: none
+      span.radio
+        display: none
     .menu
       border-radius: 10px !important
       box-shadow: 9px 9px 34px rgba(black, 0.2) !important
-      padding: 2em 3em
+      padding: 3em
       min-width: 25em
       top: calc(100% - 0.6em)
       border: 1px solid $brandColor
@@ -115,6 +122,9 @@ main.split-screen
         +vcenter
         cursor: pointer
         transition: color 0.3s ease-out
+        padding: 0 0 2em
+        span.lnr
+          display: none
         .radio
           border: 1px solid rgba($brandColor, 0.5)
           border-radius: 50%
@@ -133,6 +143,8 @@ main.split-screen
             border-radius: 10px
             transition: transform 0.3s ease-out
             transform: scale(0)
+        &:last-child
+          padding: 0
         &.selected
           background: none
           cursor: default
@@ -144,10 +156,10 @@ main.split-screen
           .radio:before
             transform: scale(1)
       &:after
-        width: 1.2em
-        height: 1.2em
-        top: -0.6em
-        margin: 0em 0em 0em -0.6em
+        width: 14px
+        height: 14px
+        top: -7px
+        margin: 0em 0em 0em -7px
     &.active
       .text
         background: $darkBrandColor

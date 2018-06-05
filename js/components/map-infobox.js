@@ -59,6 +59,10 @@ class InfoBox extends google.maps.OverlayView {
   }
 
   update(position, content) {
+    if (this.position === position) {
+      this.show();
+      return;
+    }
     this.hide();
     this.position = position;
     this.draw();
