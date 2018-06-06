@@ -64,14 +64,7 @@
       #map-view(v-else-if="isMapView" data-map-icon="#{$map_icon}" data-map-icon-current="#{$map_icon_current}" data-medal-icon="#{$medal_icon}")
         %map-container(v-bind:posts="posts")
       #list-view(v-else)
-        %ul
-          %li(v-for="post in posts")
-            %h3
-              {{ post.name }}
-            %h4
-              {{ post.position }}
-            .address
-              {{ post.location.address }}
+        %list-view(v-bind:posts="posts")
       #list-search
         %user-search(v-on:term-change="onTermChange")
         %current-filters(v-bind:filters="filters" v-on:filter-removed="onFilterRemoved")

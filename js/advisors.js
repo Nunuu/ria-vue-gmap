@@ -16,8 +16,10 @@ class Advisors extends Base {
     new CurrentFilters();
     new UserSearch();
     new NoResults();
+    new ListView();
 
     // init vue instance
+    const advisorClass = this;
     new Vue({
       data() {
         return { 
@@ -51,8 +53,8 @@ class Advisors extends Base {
           $target.siblings().addClass('selected');
         },
         filterList(e) {
-          const target = e.currentTarget;
-          const filterVal = target.getAttribute('data-value');
+          const target = e.currentTarget
+          const filterVal = target.getAttribute('data-value')
           if (filterVal != '') {
             const filteredPosts = this.allPosts.filter(post => post.province == filterVal);
             this.updatePosts(filteredPosts);
@@ -63,6 +65,7 @@ class Advisors extends Base {
           } else {
             this.displayAll();
           }
+          advisorClass.onResize();
         },
         onFilterRemoved(filterToRemove) {
           this.displayAll();
@@ -91,6 +94,15 @@ class Advisors extends Base {
     }).$mount('#app');
   }
 
+  onResize() {
+    $('.ui.dropdown').each((index, dropdown) => {
+      const $dropdown = $(dropdown);
+      const $button = $dropdown.find('button');
+      const $menu = $dropdown.find('.menu');
+      $menu.css('marginLeft', ($button.width() - $menu.width()) * 0.5 + 6);
+    });
+  }
+  
   destroy(playAnimation) {
     this.header.showSearch();
 

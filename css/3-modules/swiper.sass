@@ -1,0 +1,63 @@
+.slides-nav
+  .swiper-button
+    background: none
+    transition: transform 0.3s ease-out
+    width: auto
+    height: auto
+    padding: 1em
+    top: 50%
+    span
+      color: $brandColor
+      font-size: 3em
+  .swiper-button-prev
+    left: 5%
+    &:hover
+      transform: translateX(-10px)
+  .swiper-button-next
+    right: 5%
+    &:hover
+      transform: translateX(10px)
+.swiper-pagination
+  position: relative
+  top: 0
+  bottom: auto    
+  margin: 5em 0 0
+  .swiper-pagination-bullet
+    margin: 0 5em 0 0 !important
+    background: none
+    opacity: 1
+    width: 6px
+    height: 6px
+    padding: 8px
+    position: relative
+    &.standard
+      &:before, &:after
+        content: ''
+        position: absolute
+        top: 8px
+        left: 8px
+        width: 6px
+        height: 6px
+        border-radius: 50%
+        transition: transform 0.3s ease-out, background 0.3s ease-out
+      &:before
+        background: $brandColor
+      &:after
+        background: none
+        border: 1px solid $highlightColor
+        width: 18px
+        height: 18px
+        top: 1px
+        left: 1px
+        transform: scale(0)
+      &:last-child
+        margin: 0 !important
+      &:hover, &.swiper-pagination-bullet-active
+        &:before
+          background: $highlightColor !important
+          transform: scale(1.7)
+  .swiper-pagination-bullet-active
+    pointer-events: none
+    &.standard
+      &:after
+        transform: scale(1)

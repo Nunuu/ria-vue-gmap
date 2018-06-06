@@ -66,6 +66,7 @@ section
       margin: 0 0 2.25em
       position: relative
       line-height: 1.5
+      font-size: 4.4em
       &:after
         +underLine
         bottom: -0.5em
@@ -113,48 +114,7 @@ section
       .member
         flex-basis: calc(33.33% - 3em)
         margin: 0 3em 3em 0
-        .photo
-          display: block
-          width: 100%
-          height: 15vw
-          position: relative
-          .image
-            +full
-            +background
-          .hover
-            +full
-            background: rgba($brandColor, 0.9)
-            +hvcenter
-            opacity: 0
-            transition: opacity 0.3s ease-out
-            &:before
-              content: ''
-              position: absolute
-              top: 0
-              left: 0
-              width: 100%
-              height: 4px
-              background: $highlightColor
-            .label
-              color: white
-              font-size: 1.6em
-              text-transform: uppercase
-              +bodyFontBold
-              opacity: 0
-              transition: opacity 0.3s ease-out
-              span.lnr
-                font-size: 2.6/1.6+0em
-                position: relative
-                top: 0.25em
-                display: inline-block
-                transition: transform 0.3s ease-out
-          &:hover
-            .hover 
-              opacity: 1
-              .label
-                opacity: 1
-                span.lnr
-                  transform: translateX(10px)
+        +standardPhoto
   &.board
     background: $lightGray
     .members
@@ -162,6 +122,8 @@ section
       .member
         flex-basis: calc(25% - 5em)
         margin: 0 5em 5em 0
+        .name
+          margin-top: 0
   &.checklist
     padding-top: 0
     h3
@@ -204,12 +166,114 @@ section
           font-size: 3.1em
   &.news
     background: $lightGray
+    padding-bottom: 8em
     h2
       text-align: center
+    .swiper-wrapper
+      margin: 2em 0 8em
+    .slide
+      +standardPhoto
+      text-align: center
+      a
+        display: block
+      .photo
+        width: 80%
+        height: 8vw
+        left: 10%
+      .title
+        font-size: 1.8em
+        +bodyFontBold
+        line-height: 1.5
+        color: $brandColor
+        margin: 2em 0 1em
+        &:hover
+          color: rgba($brandColor, 0.6)
+      .info
+        font-size: 1.4em
+        +bodyFontMedium
+        color: rgba($brandColor, 0.6)
     &.dark
       background: $brandColor
       h2
         color: white
+      .slide
+        .title
+          color: white
+          &:hover
+            color: $fadedWhite
+        .info
+          color: $fadedWhite
+      .slides-nav
+        .swiper-button
+          span
+            color: white
+      .swiper-pagination
+        .swiper-pagination-bullet
+          &:before
+            background: white
+  &.standard_slides
+    h3
+      font-size: 3em
+      +bodyFontBold
+    .slides
+      max-width: 1000px
+      .slide
+        font-size: 2em
+        line-height: 1.5
+        p
+          max-width: 800px
+          margin-left: auto
+          margin-right: auto
+          a
+            color: $brandColor
+            &:hover
+              color: $darkBrandColor
+        h4
+          font-size: 1.1em
+          margin: 3em 0 2em
+          color: $brandColor
+        ul
+          display: flex
+          flex-flow: row wrap
+          li
+            flex-basis: calc(33.33% - 3em)
+            margin: 0 1.5em 2em
+            text-align: left
+            .name
+              +bodyFontBold
+              color: $brandColor
+            .position
+              font-size: 0.9em
+            .company
+              font-size: 0.8em
+              +bodyFontBold
+              margin-top: 0.5em
+    .swiper-pagination
+      margin: 3em 0 5em
+      .swiper-pagination-bullet
+        position: relative
+        font-size: 2em
+        +bodyFontBold
+        width: auto
+        height: auto
+        background: none
+        opacity: 1
+        color: $brandColor
+        padding: 0.75em 0 0
+        &:before
+          +topLine
+          background: $brandColor
+          transform: scaleX(0.7)
+        &:hover
+          &:before
+            transform: none
+      .swiper-pagination-bullet-active
+        &:before
+          background: $highlightColor
+          transform: none
+    .slides-nav
+      .swiper-button
+        top: 40em
   &.newsletter
     background: #e5ecf3
     color: $brandColor

@@ -114,7 +114,7 @@
       &:hover
         a:before
           transform: scaleX(1.5)
-      &.selected
+      &.current_page_item
         pointer-events: none
         opacity: 0.7
 
@@ -150,3 +150,47 @@
       background: $highlightColor
     &:after
       background: $brandColor
+
+=standardPhoto
+  .photo
+    display: block
+    width: 100%
+    height: 15vw
+    position: relative
+    .image
+      +full
+      +background
+    .hover
+      +full
+      background: rgba($brandColor, 0.9)
+      +hvcenter
+      opacity: 0
+      transition: opacity 0.3s ease-out
+      &:before
+        content: ''
+        position: absolute
+        top: 0
+        left: 0
+        width: 100%
+        height: 4px
+        background: $highlightColor
+      .label
+        color: white
+        font-size: 1.6em
+        text-transform: uppercase
+        +bodyFontBold
+        opacity: 0
+        transition: opacity 0.3s ease-out
+        span.lnr
+          font-size: 2.6/1.6+0em
+          position: relative
+          top: 0.25em
+          display: inline-block
+          transition: transform 0.3s ease-out
+    &:hover
+      .hover 
+        opacity: 1
+        .label
+          opacity: 1
+          span.lnr
+            transform: translateX(10px)
